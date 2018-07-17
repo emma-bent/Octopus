@@ -1,0 +1,55 @@
+def lambert_map_parti(cbar_levels, X, Y, data, lon_parti, lat_parti, title, title_colorbar, cmap):#, path_save, title_save):
+        '''
+        Function for plotting a lambert projection map.
+        
+        Args : 
+        cbar_levels, X, Y, data, title, title_colorbar, path_save, title_save
+        '''
+        import matplotlib.pyplot as plt
+        import numpy as np
+        from mpl_toolkits.basemap import Basemap
+        
+        v       = cbar_levels
+        fig     = plt.figure(figsize=(8,8))
+        m       = Basemap(llcrnrlon=162.,llcrnrlat=-79.,urcrnrlon=230.,urcrnrlat=-68.,\
+                  rsphere=(6378137.00,6356752.3142),\
+                  resolution='l',area_thresh=1000.,projection='lcc',\
+                  lat_1=65.,lon_0=180.)
+        xm, ym  = m(X, Y)
+        im      = m.contourf(xm, ym, data, levels=v, extend='both', cmap=cmap)
+
+        cbar = m.colorbar(im,pad='10%')
+        cbar.set_label(title_colorbar, fontsize =16)
+
+        m.fillcontinents(color='0.5', lake_color='0.5')
+        m.drawparallels(np.arange(-80.,-60.,5), labels=[1, 0, 0, 0])
+        m.drawmeridians(np.arange(160.,210.,5), labels=[0, 0, 0, 1])
+        m.drawcoastlines()
+       
+        m2      = Basemap(llcrnrlon=162.,llcrnrlat=-79.,urcrnrlon=230.,urcrnrlat=-68.,\
+                  rsphere=(6378137.00,6356752.3142),\
+                  resolution='l',area_thresh=1000.,projection='lcc',\
+                  lat_1=65.,lon_0=180.)
+	xm2, ym2  = m(lon_parti, lat_parti)
+        im2     = m2.plot(xm2,ym2,'*', color='k',linewidth=2.)
+                       
+        plt.title(title, fontsize=18)
+        #plt.savefig(path_save + title_save, bbox_inches='tight')
+
+        plt.show()    
+
+
+
+def pickle_load(name, path, verbose=True):
+    #if not os.path.exists(path):
+    #    os.makedirs(path)
+    import os
+    import pickle
+    full_name= (os.path.join(path,name+ '.npy'))
+
+    with open(full_name, 'r') as f:
+        data=pickle.load(f)
+
+    if verbose:
+        print('loaded from : ',full_name)
+    return data
