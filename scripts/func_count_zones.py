@@ -6,7 +6,7 @@ def count_zones(location, NPP, npts):
     Args :
         location (str): path to the file with the saved opt such as path = '/data/ebent/Octopus/output/' + location + '/'
         NPP (str):      number from 01 to 12 for the ensemble of particles being studied
-        npts (int):     total number of particles in this ensemble
+        npts (int):     total number of particles in this ensemble (NPP)
     
     Loaded variables :
         LON, LAT, DEP, xround, yround, zround, southern_front
@@ -87,7 +87,7 @@ def count_zones(location, NPP, npts):
                 #print Z1[t], Z2[t], Z3[t], Z4[t], Z5[t], dead[t]
                 break
                 
-            elif xround.mask[t,p]==True:
+            elif south_front[t-1]!=0 and xround[t-1,p]>W_boundary and xround[t-1,p]<E_boundary and xround.mask[t,p]==True:
                 #print t, 'parti is dead !'
                 dead[t:]+=1
                 #print Z1[t], Z2[t], Z3[t], Z4[t], Z5[t], dead[t]

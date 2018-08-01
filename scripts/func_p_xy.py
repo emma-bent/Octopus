@@ -47,7 +47,8 @@ def post_processing(casename, NPP, location):
     fn 	      = casename + '_00' + NPP + '.XYZ.0000000001.0000001801.data'
     folder    = '/data/ebent/Octopus/output/' + location + '/'
     opt       = np.fromfile(os.path.join(folder,fn),'>f4').reshape(-1,3,npts)
-    
+   
+    print ''
     print "data has %i records"%(opt.shape[0])
     print 'glued data : ' + fn
     print 'location of data : ' + folder

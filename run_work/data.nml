@@ -1,9 +1,9 @@
 &PARAM
 pickup=0,
-casename='12_10_4MET_725',
+casename='30m_LINE_RG',
 path2uvw='../input/',
 path2grid='../grid/',
-output_dir='/data/ebent/Octopus/output/12_10_4met_725/',
+output_dir='/data/ebent/Octopus/output/30m_line_RG/',
 fn_UVEL='UVEL_ForEmmaV0.bin',
 fn_VVEL='VVEL_ForEmmaV0.bin',
 fn_WVEL='WVEL_ForEmmaV0.bin',

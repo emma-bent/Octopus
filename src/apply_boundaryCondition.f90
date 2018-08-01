@@ -15,7 +15,9 @@ subroutine set_boundary(IPP)
         !xyz(ip,3,IPP) = min(abs(xyz(ip,3,IPP)),real(Nz-1,8))
         !xyz(ip,2,IPP) = sign(xyz(ip,2,IPP),1e0)
         !xyz(ip,2,IPP) = min(xyz(ip,2,IPP),real(Ny-1,8))
-
+!eb(
+        xyz(ip,3,IPP)=abs(xyz(ip,3,IPP))
+!eb)
         call find_index(ip,IPP)
 
         !reflective boundary condition

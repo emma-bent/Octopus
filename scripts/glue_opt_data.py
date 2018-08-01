@@ -11,10 +11,10 @@ import glob,os,sys
 import numpy as np
 
 #change this to the path of the data output   
-folder='/data/ebent/Octopus/output/12_10_4mld/'
+folder='/data/ebent/Octopus/output/255m_line_RG/'
 
 #you can glue one case or multi-cases at the same time, 'DIMES_0001' etc. are casenames
-casenames=['12_10_4MLD'] #,'DIMES_0002','DIMES_0003']
+casenames=['255m_LINE_RG'] #,'DIMES_0002','DIMES_0003']
 #casenames=['DIMES_0006']
 
 #specify particle numbers and case numbers (the NPP value in the namelist) here:

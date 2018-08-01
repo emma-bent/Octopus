@@ -28,8 +28,8 @@ lon0      = XC[0]
 npts      = 10000 # number of particles
 
 # Load Octopus output
-fn 	  = '12_10_4MLD_0006.XYZ.0000000001.0000001801.data'
-folder    = '/data/ebent/Octopus/output/12_10_4mld/'
+fn 	  = '255m_LINE_RG_0002.XYZ.0000000001.0000001801.data'
+folder    = '/data/ebent/Octopus/output/255m_line_RG/'
 opt       = np.fromfile(os.path.join(folder,fn),'>f4').reshape(-1,3,npts)
 
 print "data has %i records"%(opt.shape[0])
@@ -51,6 +51,35 @@ y = np.ma.masked_where(y<0., y)
 
 z = np.ma.masked_array(z)
 z.mask = y.mask
+
+################### Get number of parti that go wrong on z ######################
+# Counts particles with negative z values
+a = sorted(np.ma.where(z<0.)[1])
+b = []
+for i in range(len(a)):
+	if a[i]!=a[i-1]:
+		b.append(a[i])
+count_inf0 = len(b)
+print 'Number of parti with z < 0 :', count_inf0
+
+# Counts particles with z values greater than the bottom of model
+a = sorted(np.ma.where(z>103.)[1])
+bb = []
+for i in range(len(a)):
+	if a[i]!=a[i-1]:
+		bb.append(a[i])
+count_inf = len(bb) 
+print 'Number of parti with z > 103 (bottom of ocean) :', count_inf
+
+# Tried to create a loop that would check if the particles that go through bottom are the same than the ones that go negative, but it's a fail...
+
+#for m in bb:
+#	tmp = np.squeeze(np.int_(np.where(b!=bb[m])))
+#	if tmp.shape!=len(b):
+#
+
+#################################################################################
+
 z = np.ma.masked_where(z>103., z)
 z = np.ma.masked_where(z<0., z)
 
@@ -88,7 +117,15 @@ for t in range(z.shape[0]):
 
 		tmp           = zround[t,n]
 		dep[t,n]      = abs(RF[tmp]-DRF[tmp]*(z[t,n]-tmp))
-		
+	
+xround = np.ma.masked_array(xround, mask=False)
+yround = np.ma.masked_array(yround, mask=False)
+zround = np.ma.masked_array(zround, mask=False)
+
+xround.mask = x.mask
+yround.mask = y.mask
+zround.mask = z.mask
+
 # Conversion to degrees instead of indices
 lon       = x/float(res) + lon0
 

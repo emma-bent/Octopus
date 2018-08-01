@@ -15,8 +15,8 @@ XC = file1.variables['lon'][lon_min:lon_max]
 YC = file1.variables['lat'][lat_min:lat_max]
 
 # Initial pos of the particles IN DEGREES in a box for npts = scale*scale = 100
-min_lon, max_lon = 172., 190.
-min_lat, max_lat = -75., -70.
+min_lon, max_lon = 180., 230.
+min_lat, max_lat = -69., -67.
 scale = 100.
 range_lon = (max_lon-min_lon)/scale
 range_lat = (max_lat-min_lat)/scale
@@ -42,7 +42,7 @@ for i in range(lat.shape[0]):
 			y[i,j] = np.array(np.where(np.abs(lat[i,j]-YC)==np.min(np.abs(lat[i,j]-YC))))
 
 # Choose the level of depth for initial position IN INDEX
-k     = 65
+k     = 9
 
 # This makes sure that the z values have the same dimension as x and y, no conversion from meters to indexes here
 z     = np.ones_like(x)*k

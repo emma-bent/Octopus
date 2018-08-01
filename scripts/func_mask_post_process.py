@@ -85,7 +85,8 @@ def func_mask(casename, NPP, location, lon_W, lon_E, lat_S, lat_N):
     
     print ''
     print 'Number of particles that are out of the initial box on first time step :', len(parti)
-    
+    print ''
+
     # Make sure all pos have the same mask
     LAT.mask = LON.mask
     DEP.mask = LON.mask

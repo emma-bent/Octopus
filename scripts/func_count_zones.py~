@@ -6,7 +6,7 @@ def count_zones(location, NPP, npts):
     Args :
         location (str): path to the file with the saved opt such as path = '/data/ebent/Octopus/output/' + location + '/'
         NPP (str):      number from 01 to 12 for the ensemble of particles being studied
-        npts (int):     total number of particles in this ensemble
+        npts (int):     total number of particles in this ensemble (NPP)
     
     Loaded variables :
         LON, LAT, DEP, xround, yround, zround, southern_front
