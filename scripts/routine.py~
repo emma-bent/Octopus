@@ -1,0 +1,6 @@
+NPP = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+
+for npp in NPP:
+	print npp
+	routine(casename='30m_12_10_4', NPP=npp, location='30m_12_10_4', npts=10000, lon_W=172., lon_E=190., lat_S=-75., lat_N=-70.)
+
